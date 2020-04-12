@@ -1,0 +1,56 @@
+version: '3'
+services:
+
+  ubuntu1604:
+    build:
+      context: .
+      dockerfile: ubuntu1604.dcf
+    ports:
+      - "221:22"
+      - "8889:8889"
+    volumes:
+      - ./work:/root/work
+      - ./logs:/root/logs
+    depends_on:
+      - postgres
+    #networks:
+    # - my_network
+
+  postgres:
+    image: postgres:11.2
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres/init.d:/docker-entrypoint-initdb.d
+      - ./postgres/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+    hostname: postgres
+    restart: always
+    user: root
+    #networks:
+    #  - my_network
+
+# 全体のデフォルトネットワーク設定
+# $ docker network create swarm_shared
+networks:
+  default:
+    external:
+      name: swarm_shared
+
+#// 個別にネットワークを指定
+#networks:
+  # before command -> docker network create my_network
+  #my_network:
+
+#// 再ビルドで起動
+#   docker-compose up --force-recreate --build -d
+
+#// 一斉停止&一斉削除
+#   docker stop $(docker ps -q) && docker rm $(docker ps -q -a) && docker rmi $(docker images -q)
+
+#// WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! がでた場合
+#   known_hostsから該当行削除。
