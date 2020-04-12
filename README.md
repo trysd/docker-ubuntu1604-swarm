@@ -13,7 +13,7 @@ ssh root@localhost -p 221
 
 sworm
 ```
-cd work/demoS
+cd work/demo
 mvn clean package && java -jar target/demo-thorntail.jar -Djava.net.preferIPv4Stack=true
 ```
 

@@ -9,7 +9,8 @@ services:
       - "221:22"
       - "8080:8080"
     volumes:
-      - ./work:/root/work
+      - ./work:/work
+      - ./root:/root
       #- ./logs:/root/logs
     depends_on:
       - postgres
