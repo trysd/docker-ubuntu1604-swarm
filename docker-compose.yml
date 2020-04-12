@@ -7,7 +7,7 @@ services:
       dockerfile: ubuntu1604.dcf
     ports:
       - "221:22"
-      - "8889:8889"
+      - "8080:8080"
     volumes:
       - ./work:/root/work
       - ./logs:/root/logs
