@@ -19,7 +19,7 @@ mvn clean package && java -jar target/demo-thorntail.jar -Djava.net.preferIPv4St
 
 access
 ```
-http://localhost:221/helloworld
+http://localhost:221/hello
 ```
 
 stop
