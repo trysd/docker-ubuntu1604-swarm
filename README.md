@@ -13,8 +13,8 @@ ssh root@localhost -p 221
 
 sworm
 ```
-cd work/helloworld
-mvn clean package && java -jar target/helloworld-swarm.jar -Djava.net.preferIPv4Stack=true
+cd work/demoS
+mvn clean package && java -jar target/demo-thorntail.jar -Djava.net.preferIPv4Stack=true
 ```
 
 access
