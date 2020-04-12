@@ -10,7 +10,7 @@ services:
       - "8080:8080"
     volumes:
       - ./work:/root/work
-      - ./logs:/root/logs
+      #- ./logs:/root/logs
     depends_on:
       - postgres
     #networks:
@@ -21,9 +21,9 @@ services:
     container_name: postgres
     ports:
       - 5432:5432
-    volumes:
-      - ./postgres/init.d:/docker-entrypoint-initdb.d
-      - ./postgres/pgdata:/var/lib/postgresql/data
+    #volumes:
+    #  - ./postgres/init.d:/docker-entrypoint-initdb.d
+    #  - ./postgres/pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
@@ -45,12 +45,3 @@ networks:
 #networks:
   # before command -> docker network create my_network
   #my_network:
-
-#// 再ビルドで起動
-#   docker-compose up --force-recreate --build -d
-
-#// 一斉停止&一斉削除
-#   docker stop $(docker ps -q) && docker rm $(docker ps -q -a) && docker rmi $(docker images -q)
-
-#// WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED! がでた場合
-#   known_hostsから該当行削除。
